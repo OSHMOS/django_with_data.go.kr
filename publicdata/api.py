@@ -1,10 +1,7 @@
-from urllib.parse import urlencode, unquote, quote_plus
-import requests
-import json
+import requests, json
 
 
 serviceKey = "Za7CRA50UMNQz3oCW0FBl3fTCeJsF5avNAHWVIy8qdXCZ1YXy5oA%2Fel79lf%2FtIr4%2BeZbLszqfMyyirXVpNWceg%3D%3D"
-# serviceKeyDecoded = unquote(serviceKey, 'UTF-8')
 
 
 def api():
@@ -13,6 +10,10 @@ def api():
     # returnType = "json"
     # numOfRows = "100"
     # pageNo = "1"
+
+    headers = {
+        'Content-Type': 'application/json; charset=utf-8'
+    }
 
     data_status = {
         "b_no": [
@@ -35,7 +36,7 @@ def api():
         ]
     }
 
-    # res = requests.post(status_url, data=data_status)
-    res = requests.post(validate_url, data=json.dumps(data_validate))
+    # res = requests.post(status_url, data=json.dumps(data_status), headers=headers)
+    res = requests.post(validate_url, data=json.dumps(data_validate), headers=headers)
 
     return res
